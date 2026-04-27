@@ -3,6 +3,7 @@
 
 #change
 Late_penalty = 10
+Extra_Credit_Bonus = 5
 # ------------------------------------------------------------
 # Step 1: Get starting information
 # ------------------------------------------------------------
@@ -45,7 +46,7 @@ if was_late:
 # - add 5 to final_score
 # - set message to "Extra credit applied."
 if extra_credit_completed:
-    final_score = final_score + EXTRA_CREDIT_BONUS
+    final_score = final_score + Extra_Credit_Bonus
     message = "extra credit applied"
 
 
