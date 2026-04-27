@@ -2,6 +2,7 @@
 # Simple Grading System
 
 #change
+Late_penalty = 10
 # ------------------------------------------------------------
 # Step 1: Get starting information
 # ------------------------------------------------------------
@@ -12,6 +13,7 @@ score = int(input("Assignment score out of 100: "))
 was_late = input("Was the assignment late? (yes/no): ") == "yes"
 extra_credit_completed = input("Was extra credit completed? (yes/no): ") == "yes"
 
+# use boolean variables to represent logic so that our decision structures are cleaner later
 
 # These variables will be updated by your decision structures.
 final_score = score
@@ -28,7 +30,9 @@ message = ""
 # If the assignment was late:
 # - subtract 10 from final_score
 # - set message to "Late penalty applied."
-
+if was_late: 
+    final_score = final_score
+    message = "late penalty applied"
 
 
 
