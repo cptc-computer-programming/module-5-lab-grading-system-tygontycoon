@@ -44,7 +44,9 @@ if was_late:
 # If extra credit was completed:
 # - add 5 to final_score
 # - set message to "Extra credit applied."
-
+if extra_credit_completed:
+    final_score = final_score + EXTRA_CREDIT_BONUS
+    message = "extra credit applied"
 
 
 
@@ -64,7 +66,10 @@ if was_late:
 # Else:
 # - leave final_score unchanged
 
-
+if final_score > 100:
+    final_score = 100
+elif final_score < 0:
+    final_score = 0
 
 
 # ------------------------------------------------------------
@@ -80,8 +85,16 @@ if was_late:
 # 60 or above: D
 # Below 60: F
 
-
-
+if final_score > 90:
+    letter_grade = "A"
+elif final_score >= 80:
+    letter_grade = "B"
+elif final_score >= 70:
+    letter_grade = "C"
+elif final_score >= 60:
+    letter_grade = "D" 
+else:
+    letter_grade = "F"
 
 # ------------------------------------------------------------
 # Step 6: Decide if the student is passing
@@ -94,6 +107,7 @@ if was_late:
 # Else:
 # - set is_passing to False
 
+is_passing = final_score >= 60
 
 
 
@@ -111,8 +125,13 @@ if was_late:
 # Else:
 #     set message to "Not passing yet. Keep practicing."
 
-
-
+if is_passing:
+    if final_score >= 90:
+        message = " excellent work!"
+    else:
+        message = "Passing assimgnment."
+else: 
+    message = "not passing yet. keep practicing."
 
 # ------------------------------------------------------------
 # Step 8: Challenge — combine conditions
@@ -127,7 +146,7 @@ if was_late:
 # - the assignment was late AND the final score is below 70
 #
 # Otherwise, needs_review should be False.
-
+needs_review = (not is_passing) or (was_late and final_score < 70)
 
 
 
