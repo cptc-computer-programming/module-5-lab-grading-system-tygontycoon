@@ -1,7 +1,9 @@
 # grading_system.py
 # Simple Grading System
 
-
+#change
+Late_penalty = 10
+Extra_Credit_Bonus = 5
 # ------------------------------------------------------------
 # Step 1: Get starting information
 # ------------------------------------------------------------
@@ -12,6 +14,7 @@ score = int(input("Assignment score out of 100: "))
 was_late = input("Was the assignment late? (yes/no): ") == "yes"
 extra_credit_completed = input("Was extra credit completed? (yes/no): ") == "yes"
 
+# use boolean variables to represent logic so that our decision structures are cleaner later
 
 # These variables will be updated by your decision structures.
 final_score = score
@@ -28,7 +31,9 @@ message = ""
 # If the assignment was late:
 # - subtract 10 from final_score
 # - set message to "Late penalty applied."
-
+if was_late: 
+    final_score = final_score
+    message = "late penalty applied"
 
 
 
@@ -40,7 +45,9 @@ message = ""
 # If extra credit was completed:
 # - add 5 to final_score
 # - set message to "Extra credit applied."
-
+if extra_credit_completed:
+    final_score = final_score + Extra_Credit_Bonus
+    message = "extra credit applied"
 
 
 
@@ -60,7 +67,10 @@ message = ""
 # Else:
 # - leave final_score unchanged
 
-
+if final_score > 100:
+    final_score = 100
+elif final_score < 0:
+    final_score = 0
 
 
 # ------------------------------------------------------------
@@ -76,8 +86,16 @@ message = ""
 # 60 or above: D
 # Below 60: F
 
-
-
+if final_score > 90:
+    letter_grade = "A"
+elif final_score >= 80:
+    letter_grade = "B"
+elif final_score >= 70:
+    letter_grade = "C"
+elif final_score >= 60:
+    letter_grade = "D" 
+else:
+    letter_grade = "F"
 
 # ------------------------------------------------------------
 # Step 6: Decide if the student is passing
@@ -90,6 +108,7 @@ message = ""
 # Else:
 # - set is_passing to False
 
+is_passing = final_score >= 60
 
 
 
@@ -107,8 +126,13 @@ message = ""
 # Else:
 #     set message to "Not passing yet. Keep practicing."
 
-
-
+if is_passing:
+    if final_score >= 90:
+        message = " excellent work!"
+    else:
+        message = "Passing assimgnment."
+else: 
+    message = "not passing yet. keep practicing."
 
 # ------------------------------------------------------------
 # Step 8: Challenge — combine conditions
@@ -123,7 +147,7 @@ message = ""
 # - the assignment was late AND the final score is below 70
 #
 # Otherwise, needs_review should be False.
-
+needs_review = (not is_passing) or (was_late and final_score < 70)
 
 
 
